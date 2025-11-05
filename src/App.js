@@ -108,6 +108,38 @@ useEffect(() => {
 
 }, []);
 
+    const handleSaveJson = () => {
+        const content = document.getElementById('proc').value;
+        const blob = new Blob([JSON.stringify({ content })], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'strudel_code.json';
+        link.click();
+    };
+
+    const handleLoadJson = () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+        input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    if (data.content) {
+                        document.getElementById('proc').value = data.content;
+                        Proc();
+                    }
+                } catch (err) {
+                    console.error('Invalid JSON:', err);
+                }
+            };
+            reader.readAsText(file);
+        };
+        input.click();
+    };
 
 return (
     <>
@@ -125,6 +157,8 @@ return (
                 <div className="col-lg-4">
                     <Controls
                         onRadioChange={ProcAndPlay}
+                        onSaveJson={handleSaveJson}
+                        onLoadJson={handleLoadJson}
                     />
                 </div>
             </div>
