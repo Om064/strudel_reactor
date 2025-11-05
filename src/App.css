@@ -36,3 +36,153 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+    background-color: #0d1117;
+    color: #e6edf3;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.app-wrapper, .container-fluid {
+    max-width: 1250px;
+    margin: 0 auto;
+}
+
+/* === Left-Side Panels (Editor + REPL) === */
+.panel {
+    background-color: #161b22;
+    border: 1px solid #2d333b;
+    border-radius: 12px;
+    color: #e6edf3;
+    margin-bottom: 1rem;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    color: #f1f1f1;
+    font-weight: 600;
+}
+
+/* Code text area (textarea inside Editor) */
+.code-area {
+    background-color: #0d1117;
+    color: #e6edf3;
+    border: 1px solid #30363d;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    resize: vertical;
+}
+
+    .code-area:focus {
+        outline: none;
+        border-color: #58a6ff;
+        box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.4);
+    }
+
+/* === CodeMirror & REPL Scroll Areas === */
+.editor-scroll,
+#editor,
+#output {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    background-color: #0d1117;
+    padding: 6px;
+    margin-bottom: 1rem;
+}
+
+    #editor .cm-editor {
+        background-color: #0d1117 !important;
+        color: #e6edf3 !important;
+        height: auto !important;
+        min-height: 250px;
+    }
+
+/* Piano roll canvas */
+#roll {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    min-height: 220px;
+}
+
+/* === Right-Side Control Panel === */
+.control-card {
+    background-color: #f8f9fa; /* light theme for contrast */
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    color: #000000; /* black text for readability */
+}
+
+    .control-card .card-title {
+        color: #000000;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .control-card .form-check-label,
+    .control-card label {
+        color: #000000;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    .control-card .form-check-input {
+        border: 2px solid #0d6efd !important;
+        background-color: transparent !important;
+    }
+
+        .control-card .form-check-input:checked {
+            background-color: #0d6efd !important;
+            border-color: #0d6efd !important;
+            box-shadow: 0 0 5px rgba(13,110,253,0.6);
+        }
+
+/* === Buttons (All panels) === */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+}
+
+.btn-outline-primary {
+    color: #58a6ff;
+    border-color: #58a6ff;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #58a6ff;
+        color: #fff;
+    }
+
+/* Make Save/Load buttons subtler */
+.btn-outline-secondary {
+    background-color: #f8f9fa;
+    color: #000;
+    border-color: #d1d5db;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: #e9ecef;
+    }
+
+/* === Hover animation for cards === */
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    transition: all 0.2s ease;
+}
+
+/* === Responsive spacing tweaks === */
+@media (min-width: 992px) {
+    .app-wrapper, .container-fluid {
+        max-width: 1200px;
+    }
+}

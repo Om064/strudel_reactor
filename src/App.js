@@ -1,4 +1,4 @@
-import './App.css';
+﻿import './App.css';
 import { useEffect, useRef } from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
@@ -9,6 +9,9 @@ import { getAudioContext, webaudioOutput, registerSynthSounds } from '@strudel/w
 import { registerSoundfonts } from '@strudel/soundfonts';
 import { stranger_tune } from './tunes';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
+import Controls from './components/Controls';
+import REPLView from './components/REPLView';
+import Editor from './components/Editor';
 
 let globalEditor = null;
 
@@ -110,54 +113,20 @@ return (
     <>
         <div id="preRender" />
 
-        <div>
-            <h2 className="text-center mt-3">Strudel Demo</h2>
+        <div className="container-fluid py-4 px-3 px-md-5">
+            <h2 className="text-center fw-bold mb-4 text-primary">🎵 Strudel Demo</h2>
 
-            <div style={{ padding: "20px" }}>
-                <label htmlFor="proc" className="form-label">Text to preprocess:</label>
-                <textarea
-                    className="form-control mb-3"
-                    rows="15"
-                    id="proc"
-                ></textarea>
-
-                <div className="mb-3">
-                    <button id="process" className="btn btn-outline-primary me-2">Preprocess</button>
-                    <button id="process_play" className="btn btn-primary me-2">Proc &amp; Play</button>
-                    <button id="play" className="btn btn-success me-2">Play</button>
-                    <button id="stop" className="btn btn-danger">Stop</button>
+            <div className="row g-4 align-items-start">
+                <div className="col-lg-8">
+                    <Editor initialValue={stranger_tune} />
+                    <REPLView />
                 </div>
 
-                <div id="editor" className="mb-3" />
-                <div id="output" className="mb-3" />
-
-                <div className="form-check">
-                    <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault1"
-                        onChange={ProcAndPlay}
-                        defaultChecked
+                <div className="col-lg-4">
+                    <Controls
+                        onRadioChange={ProcAndPlay}
                     />
-                    <label className="form-check-label" htmlFor="flexRadioDefault1">
-                        p1: ON
-                    </label>
                 </div>
-                <div className="form-check mb-3">
-                    <input
-                        className="form-check-input"
-                        type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
-                        onChange={ProcAndPlay}
-                    />
-                    <label className="form-check-label" htmlFor="flexRadioDefault2">
-                        p1: HUSH
-                    </label>
-                </div>
-
-                <canvas id="roll" style={{ width: "100%", borderRadius: "6px" }}></canvas>
             </div>
         </div>
     </>
