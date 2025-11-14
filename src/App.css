@@ -91,6 +91,26 @@ body {
         background: #161b22;
     }
 
+#output {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: none !important;
+}
+
+#roll {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 0 0 8px 8px !important;
+    background-color: #0d1117 !important;
+    padding: 0 !important;
+}
+
+.card-body {
+    padding-bottom: 0 !important;
+}
 
 .control-card {
     background-color: #1b1f27 !important;
