@@ -12,11 +12,50 @@ import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import Controls from './components/Controls';
 import REPLView from './components/REPLView';
 import Editor from './components/Editor';
+import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
 let globalEditor = null;
 
 const handleD3Data = (event) => {
     console.log(event.detail);
+    const dataset = event.detail;
+
+    const graph = d3.select("#d3graph");
+    graph.selectAll("*").remove();
+
+    const w = 500;
+    const h = 200;
+
+    const svg = graph.append("svg")
+        .attr("width", w)
+        .attr("height", h)
+
+    const xScale = d3.scaleBand()
+        .domain(dataset.map((d, i) => i))
+        .range([40, w - 10])
+        .padding(0.2);
+
+    const yScale = d3.scaleLinear()
+        .domain([0, d3.max(dataset, d => d.y)])
+        .range([h - 30, 10]);
+
+    svg.selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) => xScale(i))
+        .attr("y", d => yScale(d.y))
+        .attr("width", xScale.bandwidth())
+        .attr("height", d => (h - 30) - yScale(d.y))
+        .attr("fill", "#58a6ff")
+
+    svg.append("g")
+        .attr("transform", `translate(0,${h - 30})`)
+        .call(d3.axisBottom(xScale).tickFormat(i => i));
+
+    svg.append("g")
+        .attr("transform", "translate(40,0)")
+        .call(d3.axisLeft(yScale));
 };
 
 export function SetupButtons() {

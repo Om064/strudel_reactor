@@ -8,6 +8,7 @@ export default function REPLView() {
                 <div id="editor" />
                 <div id="output" />
                 <canvas id="roll"></canvas>
+                <div id="d3graph"></div>
             </div>
         </div>
     );
