@@ -96,9 +96,12 @@ export function Proc() {
 export function ProcessText(match, ...args) {
 
     let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
-    }
+
+    const p1On = document.getElementById("p1On");
+    const p1Hush = document.getElementById("p1Hush");
+
+    if (p1On && p1On.checked) replace = "";
+    if (p1Hush && p1Hush.checked) replace = "_";
 
     return replace
 }
@@ -180,6 +183,20 @@ useEffect(() => {
         input.click();
     };
 
+    const handleTempoChange = (bpm) => {
+        
+    };
+
+    const handleVolumeChange = (value) => {
+        
+    };
+
+
+    const handlePresetChange = (preset) => {
+        
+    };
+    
+
 return (
     <>
         <div id="preRender" />
@@ -198,6 +215,9 @@ return (
                         onRadioChange={ProcAndPlay}
                         onSaveJson={handleSaveJson}
                         onLoadJson={handleLoadJson}
+                        onTempoChange={handleTempoChange}
+                        onVolumeChange={handleVolumeChange}
+                        onPresetChange={handlePresetChange}
                     />
                 </div>
             </div>

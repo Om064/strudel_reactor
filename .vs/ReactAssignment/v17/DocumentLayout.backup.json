@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\components\\controls.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\controls.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\components\\replview.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\replview.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\components\\editor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\editor.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\components\\playercontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\playercontrols.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|c:\\users\\ombha\\onedrive\\documents\\github\\strudel_reactor\\src\\components\\controls.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1C538C04-AF09-44AC-9272-6DDEAA808F25}|ReactAssignment.esproj|solutionrelative:src\\components\\controls.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +34,85 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "App.css",
+              "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\App.css",
+              "RelativeDocumentMoniker": "src\\App.css",
+              "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\App.css",
+              "RelativeToolTip": "src\\App.css",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAYwJgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-05T14:14:58.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "REPLView.js",
+              "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\REPLView.js",
+              "RelativeDocumentMoniker": "src\\components\\REPLView.js",
+              "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\REPLView.js",
+              "RelativeToolTip": "src\\components\\REPLView.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-14T03:42:27.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerControls.js",
+              "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\PlayerControls.js",
+              "RelativeDocumentMoniker": "src\\components\\PlayerControls.js",
+              "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\PlayerControls.js",
+              "RelativeToolTip": "src\\components\\PlayerControls.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-14T03:42:22.11Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Editor.js",
+              "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\Editor.js",
+              "RelativeDocumentMoniker": "src\\components\\Editor.js",
+              "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\Editor.js",
+              "RelativeToolTip": "src\\components\\Editor.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-14T03:42:17.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Controls.js",
               "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\Controls.js",
               "RelativeDocumentMoniker": "src\\components\\Controls.js",
               "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\components\\Controls.js",
               "RelativeToolTip": "src\\components\\Controls.js",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwB4AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwB4AAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-11-05T14:29:07.462Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "App.css",
-              "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\App.css",
-              "RelativeDocumentMoniker": "src\\App.css",
-              "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\App.css",
-              "RelativeToolTip": "src\\App.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-05T14:14:58.786Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "App.js",
               "DocumentMoniker": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\App.js",
               "RelativeDocumentMoniker": "src\\App.js",
               "ToolTip": "C:\\Users\\ombha\\OneDrive\\Documents\\GitHub\\strudel_reactor\\src\\App.js",
               "RelativeToolTip": "src\\App.js",
-              "ViewState": "AgIAADUAAAAAAAAAAAAqwHsAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAiwDoAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-05T14:11:46.955Z"
+              "WhenOpened": "2025-11-05T14:11:46.955Z",
+              "EditorCaption": ""
             }
           ]
         }
