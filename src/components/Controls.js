@@ -69,10 +69,10 @@ export default function Controls({
                                     </div>
 
                                     <div className="d-flex flex-wrap gap-2">
-                                        <button className="btn btn-outline-secondary flex-fill" onClick={handleSave}>
+                                        <button id="saveJsonBtn" className="btn btn-outline-secondary flex-fill" onClick={handleSave}>
                                             Save Script
                                         </button>
-                                        <button className="btn btn-outline-secondary flex-fill" onClick={onLoadJson}>
+                                        <button id="loadJsonBtn" className="btn btn-outline-secondary flex-fill" onClick={onLoadJson}>
                                             Load Script
                                         </button>
                                     </div>

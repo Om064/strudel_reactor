@@ -149,6 +149,61 @@ useEffect(() => {
 
 }, []);
 
+    useEffect(() => {
+        const handleHotkeys = (e) => {
+            if (e.code === "Space" && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById("play")?.click();
+            }
+
+            if (e.code === "Space" && e.shiftKey) {
+                e.preventDefault();
+                document.getElementById("stop")?.click();
+            }
+
+            if (e.code === "Enter" && !e.ctrlKey) {
+                e.preventDefault();
+                document.getElementById("process_play")?.click();
+            }
+
+            if (e.key.toLowerCase() === "p") {
+                document.getElementById("process")?.click();
+            }
+
+            if (e.key.toLowerCase() === "s" && e.ctrlKey === false) {
+                e.preventDefault();
+                document.getElementById("saveJsonBtn")?.click();
+            }
+
+            if (e.key.toLowerCase() === "l") {
+                e.preventDefault();
+                document.getElementById("loadJsonBtn")?.click();
+            }
+
+            if (e.key === "1") {
+                const box = document.getElementById("p1On");
+                if (box) {
+                    box.checked = !box.checked;
+                    box.dispatchEvent(new Event("change", { bubbles: true }));
+                }
+            }
+
+            if (e.key === "2") {
+                const box = document.getElementById("p1Hush");
+                if (box) {
+                    box.checked = !box.checked;
+                    box.dispatchEvent(new Event("change", { bubbles: true }));
+                }
+            }
+        };
+
+        window.addEventListener("keydown", handleHotkeys);
+
+        return () => {
+            window.removeEventListener("keydown", handleHotkeys);
+        };
+    }, []);
+
     const handleSaveJson = () => {
         const content = document.getElementById('proc').value;
         const blob = new Blob([JSON.stringify({ content })], { type: 'application/json' });
