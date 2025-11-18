@@ -5,7 +5,8 @@ export default function Controls({
     onSaveJson,
     onLoadJson,
     onTempoChange,
-    onVolumeChange
+    onVolumeChange,
+    onReverbChange
 }) {
     const [showToast, setShowToast] = useState(false);
 
@@ -166,6 +167,21 @@ export default function Controls({
                                         <label className="form-check-label" htmlFor="p1Hush">
                                             p1 : HUSH
                                         </label>
+                                    </div>
+
+                                    <div className="form-check mb-1">
+                                        <label className="form-label mt-3 fw-semibold">
+                                            Reverb
+                                        </label>
+                                        <input
+                                            type="range"
+                                            className="form-range"
+                                            min="0"
+                                            max="1"
+                                            step="0.05"
+                                            defaultValue="0.4"
+                                            onChange={(e) => onReverbChange(e.target.value)}
+                                        />
                                     </div>
 
                                 </div>

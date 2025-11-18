@@ -238,18 +238,81 @@ useEffect(() => {
     };
 
     const handleTempoChange = (bpm) => {
-        
+        const editor = document.getElementById("proc");
+        if (!editor) return;
+
+        const content = editor.value.split("\n");
+
+        if (content[0].trim().startsWith("setcps(")) {
+            content[0] = `setcps(${bpm}/60/4)`;
+        }
+
+        editor.value = content.join("\n");
+
+        ProcAndPlay();
     };
+
 
     const handleVolumeChange = (value) => {
         
     };
 
 
-    const handlePresetChange = (preset) => {
-        
+    const handleReverbChange = (value) => {
+        const editor = document.getElementById("proc");
+        if (!editor) return;
+
+        let script = editor.value;
+        const reverbValue = (parseFloat(value) * 10).toFixed(1);
+
+        script = updateEffectInBlock(script, "bassline", "room", reverbValue);
+        script = updateEffectInBlock(script, "main_arp", "room", reverbValue);
+        script = updateEffectInBlock(script, "drums", "room", reverbValue);
+        script = updateEffectInBlock(script, "drums2", "room", reverbValue);
+
+        editor.value = script;
+        ProcAndPlay();
     };
-    
+
+
+
+    function updateEffectInBlock(script, blockName, effectName, value) {
+        let lines = script.split("\n");
+
+        let inside = false;
+        let soundLineIndex = -1;
+
+        for (let i = 0; i < lines.length; i++) {
+            const l = lines[i].trim();
+
+            if (l.startsWith(blockName + ":")) {
+                inside = true;
+                continue;
+            }
+            if (inside && l.endsWith(":")) {
+                inside = false;
+            }
+            if (!inside) continue;
+
+            if (l.startsWith(`.${effectName}(`)) {
+                lines.splice(i, 1);
+                i--;
+                continue;
+            }
+
+            if (l.startsWith(".sound(")) {
+                soundLineIndex = i;
+            }
+        }
+
+        if (soundLineIndex !== -1) {
+            lines.splice(soundLineIndex + 1, 0, `  .${effectName}(${value})`);
+        }
+
+        return lines.join("\n");
+    }
+
+
 
 return (
     <>
@@ -271,7 +334,7 @@ return (
                         onLoadJson={handleLoadJson}
                         onTempoChange={handleTempoChange}
                         onVolumeChange={handleVolumeChange}
-                        onPresetChange={handlePresetChange}
+                        onReverbChange={handleReverbChange}
                     />
                 </div>
             </div>
