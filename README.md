@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+﻿# Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +68,81 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+---
+
+# Strudel Music Sequencer – Project Documentation
+
+## Overview
+This application is an interactive Strudel-based music sequencer built using React, WebAudio, CodeMirror, and Bootstrap.  
+Users can write and modify Strudel scripts, adjust playback parameters, view piano roll/D3 visualizations, and manipulate audio effects.
+
+---
+
+## Controls Overview
+
+### **Playback Controls**
+- **Preprocess:** Applies placeholder replacements (e.g., `<p1_Radio>`) before playing.
+- **Proc & Play:** Runs preprocess and immediately starts playback.
+- **Play:** Starts playing the current script.
+- **Stop:** Stops playback instantly.
+- **Save Script:** Exports the editor script as JSON.
+- **Load Script:** Imports JSON and replaces editor content.
+
+---
+
+### **Sound Settings**
+- **Tempo (BPM):** Updates the script's first line (`setcps(...)`), changing the playback tempo.
+- **Drum Volume (Kicks):** Adjusts the loudness of the drum / kick layer by updating a gain constant in the script. At low values you mostly hear the arpeggiated synth, and at higher values the beat becomes much heavier and more prominent.
+
+---
+
+### **Pattern Controls**
+- **p1 : ON** → Enables pattern by replacing `<p1_Radio>` with an empty string.
+- **p1 : HUSH** → Mutes pattern by replacing `<p1_Radio>` with `_`.
+- **Reverb:** Dynamically injects `.room(value)` into scripted blocks (bassline, main_arp, drums, drums2).
+
+---
+
+### Hotkeys
+| Key           | Function        |
+|---------------|-----------------|
+| Space         | Play            |
+| Shift + Space | Stop            |
+| Enter         | Proc & Play     |
+| P             | Preprocess	  |
+| S             | Save Script     |
+| L             | Load Script     |
+| 1             | Toggle p1: ON   |
+| 2             | Toggle p1: HUSH |
+
+---
+
+## Quirks & Usage Notes
+- Script must contain the placeholder:  `<p1_Radio>`
+- for ON/HUSH toggling to work.
+- Reverb slider rewrites `.room()` lines inside specific block names only (bassline, main_arp, drums, drums2).
+- Drum Volume affects primarily the kick/drum layer by updating a gain constant in the script and reapplying the pattern. The melodic arpeggiator continues at its original level, so turning Drum Volume down effectively creates a “beat-only vs. melody-only” contrast.
+- Multiple accordion groups can be opened simultaneously.
+
+---
+
+## Demonstration Video
+https://mymailunisaedu-my.sharepoint.com/:v:/g/personal/bhaog001_mymail_unisa_edu_au/IQDthEug3v2RQJwyUZLm3JbhAR6JWUAx8zHynKztidomXDE?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mMFfWm
+
+---
+
+## Technologies Used
+- React
+- Strudel
+- CodeMirror
+- Bootstrap 5
+- D3.js
+- WebAudio API
+
+---
+
+## License
+Created for academic use as part of a university assignment.
