@@ -1,5 +1,7 @@
 export const stranger_tune = `setcps(140/60/4)
 
+const master_gain = 0.80
+
 samples('github:algorave-dave/samples')
 samples('https://raw.githubusercontent.com/tidalcycles/Dirt-Samples/master/strudel.json')
 samples('https://raw.githubusercontent.com/Mittans/tidal-drum-machines/main/machines/tidal-drum-machines.json')
@@ -68,27 +70,27 @@ stack(
   .struct(pick(drum_structure, pattern)),
 
   s("sh").struct("[x!3 ~!2 x!10 ~]")
-  .postgain(0.5).lpf(7000)
+  .postgain(0.5 * master_gain).lpf(7000)
   .bank("RolandTR808")
-  .speed(0.8).jux(rev).room(sine.range(0.1,0.4)).gain(0.6),
+  .speed(0.8).jux(rev).room(sine.range(0.1,0.4)).gain(0.6 * master_gain),
 
   s("{~ ~ rim ~ cp ~ rim cp ~!2 rim ~ cp ~ < rim ~ >!2}%8 *2")
   .bank("[KorgDDM110, OberheimDmx]").speed(1.2)
-  .postgain(.25),
+  .postgain(.25 * master_gain),
 )
 
 drums2: 
 stack(
-  s("[~ hh]*4").bank("RolandTR808").room(0.3).speed(0.75).gain(1.2),
+  s("[~ hh]*4").bank("RolandTR808").room(0.3).speed(0.75).gain(1.2 * master_gain),
   s("hh").struct("x*16").bank("RolandTR808")
-  .gain(0.6)
+  .gain(0.6 * master_gain)
   .jux(rev)
   .room(sine.range(0.1,0.4))
-  .postgain(0.5),
+  .postgain(0.5 * master_gain),
   
   s("[psr:[2|5|6|7|8|9|12|24|25]*16]?0.1")
-  .gain(0.1)
-  .postgain(pick(gain_patterns, pattern))
+  .gain(0.1 * master_gain)
+  .postgain(pick(gain_patterns, pattern) * master_gain)
   .hpf(1000)
   .speed(0.5)
   .rarely(jux(rev)),

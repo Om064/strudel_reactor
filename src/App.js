@@ -305,9 +305,28 @@ useEffect(() => {
         ProcAndPlay();
     };
 
+    // Handles changes to the drum volume slider by updating the master_gain
+    const handleDrumVolumeChange = (value) => {
+        const editor = document.getElementById("proc");
+        if (!editor) return;
 
-    const handleVolumeChange = (value) => {
-        
+        // Convert slider value (string) to a numeric string with 2 decimal places
+        const vol = parseFloat(value).toFixed(2);
+
+        const lines = editor.value.split("\n");
+
+        // Find the line that defines the master gain used for drums
+        const idx = lines.findIndex((line) =>
+            line.trim().startsWith("const master_gain")
+        );
+
+        if (idx !== -1) {
+            // Replace the existing master_gain line with the new volume
+            lines[idx] = `const master_gain = ${vol} `;
+            editor.value = lines.join("\n");
+
+            ProcAndPlay();
+        }
     };
 
     /**
@@ -391,14 +410,14 @@ return (
                     <REPLView />
                 </div>
 
-                {/* Control panel for playback, tempo, reverb, etc. */}
+                {/* Control panel for playback, tempo, reverb, save/load json script, and drum sound volume. */}
                 <div className="col-lg-4">
                     <Controls
                         onRadioChange={ProcAndPlay}          // p1 ON / HUSH toggle
                         onSaveJson={handleSaveJson}          // export script
                         onLoadJson={handleLoadJson}          // import script
                         onTempoChange={handleTempoChange}    // updates setcps()
-                        onVolumeChange={handleVolumeChange}  // placeholder
+                        onDrumVolumeChange={handleDrumVolumeChange}  // Changes the drum volume
                         onReverbChange={handleReverbChange}  // updates .room()
                     />
                 </div>

@@ -5,7 +5,7 @@ export default function Controls({
     onSaveJson,
     onLoadJson,
     onTempoChange,
-    onVolumeChange,
+    onDrumVolumeChange,
     onReverbChange
 }) {
     // Controls toast popup visibility for "Save Script"
@@ -121,9 +121,9 @@ export default function Controls({
                                         onChange={(e) => onTempoChange(e.target.value)}
                                     />
 
-                                    {/* Volume slider */}
+                                    {/* Changes the volume of drum/kick inside the beat slider */}
                                     <label className="form-label mt-3 fw-semibold">
-                                        Volume
+                                        Drum Volume (Kick)
                                     </label>
                                     <input
                                         type="range"
@@ -132,7 +132,7 @@ export default function Controls({
                                         max="1"
                                         step="0.01"
                                         defaultValue="0.8"
-                                        onChange={(e) => onVolumeChange(e.target.value)}
+                                        onChange={(e) => onDrumVolumeChange(e.target.value)}
                                     />
                                 </div>
                             </div>
