@@ -8,8 +8,10 @@ export default function Controls({
     onVolumeChange,
     onReverbChange
 }) {
+    // Controls toast popup visibility for "Save Script"
     const [showToast, setShowToast] = useState(false);
 
+    // Trigger save function + briefly show toast
     const handleSave = () => {
         onSaveJson();
         setShowToast(true);
@@ -18,6 +20,7 @@ export default function Controls({
 
     return (
         <>
+            {/* Toast that appears when script is saved */}
             <div
                 className={`toast position-fixed top-0 end-0 m-3 bg-success text-white ${showToast ? "show" : "hide"}`}
                 role="alert"
@@ -28,14 +31,17 @@ export default function Controls({
                 </div>
             </div>
 
+            {/* Main control card */}
             <div className="card shadow-lg rounded-4">
                 <div className="card-body">
                     <h4 className="card-title mb-3 fw-bold text-primary">
                         Control Panel
                     </h4>
 
+                    {/* Accordion containing all control groups */}
                     <div className="accordion" id="controlsAccordion">
 
+                        {/* Playback controls group */}
                         <div className="accordion-item">
                             <h2 className="accordion-header">
                                 <button
@@ -54,6 +60,7 @@ export default function Controls({
                             >
                                 <div className="accordion-body">
 
+                                    {/* Playback buttons */}
                                     <div className="d-flex flex-wrap gap-2 mb-3">
                                         <button id="process" className="btn btn-outline-primary flex-fill">
                                             Preprocess
@@ -69,6 +76,7 @@ export default function Controls({
                                         </button>
                                     </div>
 
+                                    {/* Save / Load script */}
                                     <div className="d-flex flex-wrap gap-2">
                                         <button id="saveJsonBtn" className="btn btn-outline-secondary flex-fill" onClick={handleSave}>
                                             Save Script
@@ -81,6 +89,7 @@ export default function Controls({
                             </div>
                         </div>
 
+                        {/* Sound settings group */}
                         <div className="accordion-item">
                             <h2 className="accordion-header">
                                 <button
@@ -99,6 +108,7 @@ export default function Controls({
                             >
                                 <div className="accordion-body">
 
+                                    {/* Tempo slider */}
                                     <label className="form-label mt-2 fw-semibold">
                                         Tempo (BPM)
                                     </label>
@@ -111,6 +121,7 @@ export default function Controls({
                                         onChange={(e) => onTempoChange(e.target.value)}
                                     />
 
+                                    {/* Volume slider */}
                                     <label className="form-label mt-3 fw-semibold">
                                         Volume
                                     </label>
@@ -127,6 +138,7 @@ export default function Controls({
                             </div>
                         </div>
 
+                        {/* Pattern + Effects controls */}
                         <div className="accordion-item">
                             <h2 className="accordion-header">
                                 <button
@@ -145,6 +157,7 @@ export default function Controls({
                             >
                                 <div className="accordion-body">
 
+                                    {/* p1 ON toggles pattern active */}
                                     <div className="form-check mb-2">
                                         <input
                                             className="form-check-input"
@@ -157,6 +170,7 @@ export default function Controls({
                                         </label>
                                     </div>
 
+                                    {/* p1 HUSH inserts rest (_) into pattern */}
                                     <div className="form-check mb-1">
                                         <input
                                             className="form-check-input"
@@ -169,6 +183,7 @@ export default function Controls({
                                         </label>
                                     </div>
 
+                                    {/* Reverb control affecting .room() */}
                                     <div className="form-check mb-1">
                                         <label className="form-label mt-3 fw-semibold">
                                             Reverb

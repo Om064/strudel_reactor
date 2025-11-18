@@ -14,8 +14,13 @@ import REPLView from './components/REPLView';
 import Editor from './components/Editor';
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
+// Global reference to the Strudel editor instance
 let globalEditor = null;
 
+/**
+ * Handles custom D3 events coming from console-monkey-patch.js.
+ * This renders the bar chart based on pattern density data emitted from Strudel. 
+ */
 const handleD3Data = (event) => {
     console.log(event.detail);
     const dataset = event.detail;
@@ -30,15 +35,18 @@ const handleD3Data = (event) => {
         .attr("width", w)
         .attr("height", h)
 
+    // X-axis scale uses index of dataset
     const xScale = d3.scaleBand()
         .domain(dataset.map((d, i) => i))
         .range([40, w - 10])
         .padding(0.2);
 
+    // Y-axis scale uses y-value of each datapoint
     const yScale = d3.scaleLinear()
         .domain([0, d3.max(dataset, d => d.y)])
         .range([h - 30, 10]);
 
+    // Draw bars
     svg.selectAll("rect")
         .data(dataset)
         .enter()
@@ -49,15 +57,21 @@ const handleD3Data = (event) => {
         .attr("height", d => (h - 30) - yScale(d.y))
         .attr("fill", "#58a6ff")
 
+    // Bottom axis
     svg.append("g")
         .attr("transform", `translate(0,${h - 30})`)
         .call(d3.axisBottom(xScale).tickFormat(i => i));
 
+    // Left axis
     svg.append("g")
         .attr("transform", "translate(40,0)")
         .call(d3.axisLeft(yScale));
 };
 
+/**
+ * Connects Play / Stop / Process buttons to Strudel editor.
+ * These buttons use classic DOM event listeners (not React-based).
+ */
 export function SetupButtons() {
 
     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
@@ -76,7 +90,9 @@ export function SetupButtons() {
 }
 
 
-
+/**
+ * Runs Preprocess and Play together.
+ */
 export function ProcAndPlay() {
     if (globalEditor != null && globalEditor.repl.state.started == true) {
         console.log(globalEditor)
@@ -85,6 +101,12 @@ export function ProcAndPlay() {
     }
 }
 
+/**
+ * Preprocess function:
+ * - Reads the content from the editor textarea (#proc)
+ * - Replaces any <p1_Radio> tokens based on checkbox state
+ * - Injects result into Strudel editor
+ */
 export function Proc() {
 
     let proc_text = document.getElementById('proc').value
@@ -92,6 +114,10 @@ export function Proc() {
     globalEditor.setCode(proc_text_replaced)
 }
 
+/**
+ * Returns either "" or "_" based on ON/HUSH checkbox state.
+ * "_" = TidalCycles rest symbol → silence the pattern.
+ */
 export function ProcessText(match, ...args) {
 
     let replace = ""
@@ -105,6 +131,11 @@ export function ProcessText(match, ...args) {
     return replace
 }
 
+/**
+ * Main Strudel Demo React component.
+ * Initializes the editor, audio engine, hotkeys, JSON save/load,
+ * and connects UI controls to Strudel functions.
+ */
 export default function StrudelDemo() {
 
 const hasRun = useRef(false);
@@ -149,37 +180,48 @@ useEffect(() => {
 
 }, []);
 
+    /**
+     * Hotkeys for Play / Stop / Preprocess / Load / Save.
+     * These work globally on the window.
+     */
     useEffect(() => {
         const handleHotkeys = (e) => {
+            // Space = Play
             if (e.code === "Space" && !e.shiftKey) {
                 e.preventDefault();
                 document.getElementById("play")?.click();
             }
 
+            // Shift+Space = Stop
             if (e.code === "Space" && e.shiftKey) {
                 e.preventDefault();
                 document.getElementById("stop")?.click();
             }
 
+            // Enter = Process & Play
             if (e.code === "Enter" && !e.ctrlKey) {
                 e.preventDefault();
                 document.getElementById("process_play")?.click();
             }
 
+            // P = Preprocess
             if (e.key.toLowerCase() === "p") {
                 document.getElementById("process")?.click();
             }
 
+            // S = Save JSON
             if (e.key.toLowerCase() === "s" && e.ctrlKey === false) {
                 e.preventDefault();
                 document.getElementById("saveJsonBtn")?.click();
             }
 
+            // L = Load JSON
             if (e.key.toLowerCase() === "l") {
                 e.preventDefault();
                 document.getElementById("loadJsonBtn")?.click();
             }
 
+            // 1 = Toggle p1:ON
             if (e.key === "1") {
                 const box = document.getElementById("p1On");
                 if (box) {
@@ -188,6 +230,7 @@ useEffect(() => {
                 }
             }
 
+            // 2 = Toggle p1:HUSH
             if (e.key === "2") {
                 const box = document.getElementById("p1Hush");
                 if (box) {
@@ -204,6 +247,9 @@ useEffect(() => {
         };
     }, []);
 
+    /**
+    * Saves current editor script as a JSON file.
+    */
     const handleSaveJson = () => {
         const content = document.getElementById('proc').value;
         const blob = new Blob([JSON.stringify({ content })], { type: 'application/json' });
@@ -213,6 +259,9 @@ useEffect(() => {
         link.click();
     };
 
+    /**
+    * Loads a saved JSON script and injects it into the editor.
+    */
     const handleLoadJson = () => {
         const input = document.createElement('input');
         input.type = 'file';
@@ -237,6 +286,10 @@ useEffect(() => {
         input.click();
     };
 
+    /**
+    * Adjusts tempo by updating the first line of the script:
+    * setcps(bpm/60/4)
+    */
     const handleTempoChange = (bpm) => {
         const editor = document.getElementById("proc");
         if (!editor) return;
@@ -257,7 +310,9 @@ useEffect(() => {
         
     };
 
-
+    /**
+    * Reverb effect handler — kept as-is with no modifications.
+    */
     const handleReverbChange = (value) => {
         const editor = document.getElementById("proc");
         if (!editor) return;
@@ -275,7 +330,10 @@ useEffect(() => {
     };
 
 
-
+    /**
+    * Utility helper for effect insertion inside a block.
+    * Removes previous instances and inserts new effect line.
+    */
     function updateEffectInBlock(script, blockName, effectName, value) {
         let lines = script.split("\n");
 
@@ -294,17 +352,20 @@ useEffect(() => {
             }
             if (!inside) continue;
 
+            // Remove old effect lines
             if (l.startsWith(`.${effectName}(`)) {
                 lines.splice(i, 1);
                 i--;
                 continue;
             }
 
+            // Locate .sound(...) line
             if (l.startsWith(".sound(")) {
                 soundLineIndex = i;
             }
         }
 
+        // Insert effect after sound()
         if (soundLineIndex !== -1) {
             lines.splice(soundLineIndex + 1, 0, `  .${effectName}(${value})`);
         }
@@ -316,25 +377,29 @@ useEffect(() => {
 
 return (
     <>
+        {/* Required placeholder div used by Strudel before rendering */}
         <div id="preRender" />
 
         <div className="container-fluid py-4 px-3 px-md-5">
             <h2 className="text-center fw-bold mb-4 text-primary">🎵 Strudel Demo</h2>
 
+            {/* Main layout: editor on the left, controls on the right */}
             <div className="row g-4 align-items-start">
+                {/* Code editor + evaluation output */}
                 <div className="col-lg-8">
                     <Editor initialValue={stranger_tune} />
                     <REPLView />
                 </div>
 
+                {/* Control panel for playback, tempo, reverb, etc. */}
                 <div className="col-lg-4">
                     <Controls
-                        onRadioChange={ProcAndPlay}
-                        onSaveJson={handleSaveJson}
-                        onLoadJson={handleLoadJson}
-                        onTempoChange={handleTempoChange}
-                        onVolumeChange={handleVolumeChange}
-                        onReverbChange={handleReverbChange}
+                        onRadioChange={ProcAndPlay}          // p1 ON / HUSH toggle
+                        onSaveJson={handleSaveJson}          // export script
+                        onLoadJson={handleLoadJson}          // import script
+                        onTempoChange={handleTempoChange}    // updates setcps()
+                        onVolumeChange={handleVolumeChange}  // placeholder
+                        onReverbChange={handleReverbChange}  // updates .room()
                     />
                 </div>
             </div>
